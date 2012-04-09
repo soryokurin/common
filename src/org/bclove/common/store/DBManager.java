@@ -25,7 +25,10 @@ public class DBManager {
 
 	public static DBManager getInstance() {
 		if (instance == null) {
-			instance = new DBManager();
+			synchronized (DBManager.class) {
+				if (instance == null)
+					instance = new DBManager();
+			}
 		}
 
 		return instance;
